@@ -1,3 +1,6 @@
+# AI504 Assignment 2: Reproducing mFACT (Qiu et al., EMNLP 2023)
+
+Group [09] | [Ismail Zaid Alkilani, 26001356],[Alfarouq Alsharif, 26001744],[Lakshmi Vijay, 26000898] 
 ## 1. Paper reproduced and claim tested
 
 **Paper.** Yifu Qiu, Yftah Ziser, Anna Korhonen, Edoardo M. Ponti, and Shay B. Cohen (2023). *Detecting and Mitigating Hallucinations in Multilingual Summarisation.* Proceedings of EMNLP 2023, pages 8914-8932.
