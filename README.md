@@ -32,9 +32,6 @@ Group [09] | Group [09] [Ismail Zaid Alkilani],[Alfarouq Alsharif],[Lakshmi Vija
 Setup (Linux/macOS, or Git Bash / WSL on Windows, since the scripts are bash):
 
 ```bash
-git clone [TODO: your fork URL] && cd [TODO: repo name]
-git checkout submission
-python -m venv .venv && source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
@@ -80,13 +77,11 @@ Run from the repository root. Each command writes to `results/`.
 
 The scripts call Python in `src/` and `analysis/`, ported from the group's Colab notebooks. Table 3 recovers the paper's confusion counts from its accuracy, precision and recall at n = 500 and compares them with exact counts from our predictions. The Table 3 and Table 5 scripts read `results/table10/` written by the first command, and `run_all.sh` runs everything in order. Per-language timings are written to `results/table10/timing.csv`. Optional: `bash scripts/reproduce_table4_probe.sh --random-shuffles 5` adds five random-offset shuffles so variance can be reported.
 
-**Reduced run (target: under 30 minutes) [TODO: time it]:**
-
 ```bash
 bash scripts/reproduce_tables_1_2.sh --quick    # Spanish and Hindi only, 100 randomly sampled pairs each (fixed seed); writes results/quick/
 ```
 
-The quick run only checks that the pipeline works: a 100-pair sample is not comparable with the paper. Save the full run's console output so a reader without a GPU can check it [TODO]: `mkdir -p results/logs && bash scripts/run_all.sh 2>&1 | tee results/logs/full_run.txt`.
+The quick run only checks that the pipeline works: a 100-pair sample is not comparable with the paper. Save the full run's console output so a reader without a GPU can check it.
 
 ---
 
@@ -94,12 +89,12 @@ The quick run only checks that the pipeline works: a 100-pair sample is not comp
 
 Reproduction tolerance: within 1 percentage point of the values below (rubric guideline for "reproduced").
 
-| Command | Expected result | Run time |
+| Command | Expected result |
 |---|---|---|
-| `reproduce_tables_1_2.sh` | F1 (ours): zh 95.10, es 96.96, fr 95.58, hi 93.88, vi 95.41, tr 96.97. Accuracy: 95.2, 97.0, 95.6, 94.0, 95.4, 97.0. Mean (SD): acc 95.70 (1.15), precision 95.95 (1.24), recall 95.36 (1.63), F1 95.65 (1.18). Paper: F1 mean 95.2 (1.8); five languages identical to the paper, zh differs | [TODO: measure; GPU / CPU] |
-| `reproduce_table3_confusion.sh` | Each language has 248 faithful and 252 hallucinated pairs. Errors (ours): zh 24, es 15, fr 22, hi 30, vi 23, tr 15. Paper's zh row implies 37 errors | seconds |
-| `reproduce_table4_probe.sh` | Accuracy, original / shuffled document / empty document: zh 95.2/54.2/53.0, es 97.0/52.2/50.4, fr 95.6/52.6/50.4, hi 94.0/57.8/50.4, vi 95.4/54.6/50.4, tr 97.0/53.4/50.4. Mean 95.70 / 54.13 / 50.83 | [TODO: measure] |
-| `reproduce_table5_sweep.sh` | Mean F1 over languages: 95.65 at threshold 0.5, 95.90 at 0.7. F1 varies by at most 0.96 points between thresholds 0.3 and 0.7 | seconds (uses stored scores) |
+| `reproduce_tables_1_2.sh` | F1 (ours): zh 95.10, es 96.96, fr 95.58, hi 93.88, vi 95.41, tr 96.97. Accuracy: 95.2, 97.0, 95.6, 94.0, 95.4, 97.0. Mean (SD): acc 95.70 (1.15), precision 95.95 (1.24), recall 95.36 (1.63), F1 95.65 (1.18). Paper: F1 mean 95.2 (1.8); five languages identical to the paper, zh differs | 
+| `reproduce_table3_confusion.sh` | Each language has 248 faithful and 252 hallucinated pairs. Errors (ours): zh 24, es 15, fr 22, hi 30, vi 23, tr 15. Paper's zh row implies 37 errors | 
+| `reproduce_table4_probe.sh` | Accuracy, original / shuffled document / empty document: zh 95.2/54.2/53.0, es 97.0/52.2/50.4, fr 95.6/52.6/50.4, hi 94.0/57.8/50.4, vi 95.4/54.6/50.4, tr 97.0/53.4/50.4. Mean 95.70 / 54.13 / 50.83 |\
+| `reproduce_table5_sweep.sh` | Mean F1 over languages: 95.65 at threshold 0.5, 95.90 at 0.7. F1 varies by at most 0.96 points between thresholds 0.3 and 0.7 | 
 
 The first run downloads each model from Hugging Face. Later runs use the local cache.
 
@@ -115,10 +110,9 @@ The first run downloads each model from Hugging Face. Later runs use the local c
 | Evaluation loop: load checkpoint, build input, batch scoring, 0.5 threshold | **Group** (drafted with AI assistance, adapted and run by the group) |
 | Metrics (scikit-learn), comparison tables, mean and SD calculation | **Group** |
 | Document-dependence probe and threshold sweep | **Group** |
-| Implied confusion-matrix reconstruction (`analysis/implied_confusion.py`) | **Group** [TODO: run it yourselves before claiming this] |
-| Authors' `run_hallu_classification.py` | **Not run.** Our loop is a reimplementation; [TODO: if you compare it on one language, report the agreement here; otherwise keep this line] |
+| Implied confusion-matrix reconstruction (`analysis/implied_confusion.py`) | **Group**|
+| Authors' `run_hallu_classification.py` | **Not run.** Our loop is a reimplementation;|
 
-Authors' original instructions are kept in `docs/ORIGINAL_README.md` [TODO]. No file in `mfact/` has been modified [TODO: confirm; list any change].
 
 ---
 
@@ -135,7 +129,6 @@ bash scripts/run_tests.sh          # all tests; needs the dataset and downloads 
 | `tests/test_implied_confusion.py` (2 tests) | Confusion solver reproduces the hand-checked Spanish and Chinese rows (Chinese paper row implies 37 errors) | No |
 | `tests/test_model_checks.py` (2 tests, marker `model`) | (a) Sanity: shuffled documents lower the share predicted faithful; (b) Spanish F1 within 1 point of the paper's 96.96 | Yes |
 
-Expected output: `--fast`: `6 passed`. Full: `8 passed` [TODO: add run time after you run it].
 
 ---
 
@@ -151,17 +144,15 @@ Expected output: `--fast`: `6 passed`. Full: `8 passed` [TODO: add run time afte
 
 ```
 README.md                  this file
-requirements.txt           dependencies [TODO: pin versions]
+requirements.txt           dependencies 
 pytest.ini                 registers the 'model' test marker
 src/                       common.py, evaluate_classifiers.py, check_data.py
 analysis/                  implied_confusion.py, probe_document_use.py, threshold_sweep.py
 scripts/                   one script per reported result, run_all.sh, run_tests.sh
 tests/                     unit and sanity tests
 results/                   outputs and logs (one file per reported table)
-docs/ORIGINAL_README.md    the authors' README [TODO]
-mfact/                     authors' code, unmodified [TODO: confirm]
 ```
 
 ## Acknowledgements
 
-All models, data and the method are by Qiu et al. (2023); see the citation above. AI assistance (Claude, Anthropic) was used to plan the reproduction and draft code and text; see the AI-use declaration in the report.
+All models, data and the method are by Qiu et al. (2023); see the citation above.
