@@ -1,6 +1,7 @@
 # AI504 Assignment 2: Reproducing mFACT (Qiu et al., EMNLP 2023)
 
 Group [09] | [Ismail Zaid Alkilani], [Alfarouq Alsharif], [Lakshmi Vijay]
+
 ---
 
 ## 1. Paper reproduced and claim tested
@@ -106,10 +107,11 @@ The first run downloads each model from Hugging Face. Later runs use the local c
 | Translated faithfulness dataset | **Authors** (Google Drive) |
 | Six trained classifiers (`yfqiu-nlp/mFACT-*`) | **Authors** (Hugging Face) |
 | Method and published numbers (Tables 1, 10) | **Authors** (paper, repo) |
-| Evaluation loop: load checkpoint, build input, batch scoring, 0.5 threshold | **Group** (drafted with AI assistance, adapted and run by the group) |
+| Evaluation loop: load checkpoint, build input, batch scoring, 0.5 threshold | **Group** |
 | Metrics (scikit-learn), comparison tables, mean and SD calculation | **Group** |
 | Document-dependence probe and threshold sweep | **Group** |
-
+| Implied confusion-matrix reconstruction (`analysis/implied_confusion.py`) | **Group** |
+| Authors' `run_hallu_classification.py` | **Not run.** Our loop is a reimplementation; |
 
 
 ---
