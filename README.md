@@ -1,15 +1,12 @@
 # AI504 Assignment 2: Reproducing mFACT (Qiu et al., EMNLP 2023)
 
-Group [NN] | [Member A], [Member B], [Member C] | Final commit tag: `submission`
-
-> **Draft status.** Items marked **[TODO]** need your input or a file that does not exist yet. Delete this note and every [TODO] before tagging `submission`. Every command below must exist and run on a fresh clone (rubric C1, C3, C5).
-
+Group [09] | Group [09] [Ismail Zaid Alkilani],[Alfarouq Alsharif],[Lakshmi Vijay]
 ---
 
 ## 1. Paper reproduced and claim tested
 
 **Paper.** Yifu Qiu, Yftah Ziser, Anna Korhonen, Edoardo M. Ponti, and Shay B. Cohen (2023). *Detecting and Mitigating Hallucinations in Multilingual Summarisation.* Proceedings of EMNLP 2023, pages 8914-8932.
-- Paper: https://arxiv.org/abs/2305.13632 [TODO: add ACL Anthology link]
+- Paper: https://aclanthology.org/2023.emnlp-main.551/
 - Original code, data and models: https://github.com/yfqiu-nlp/mfact-summ
 
 **Claim tested.** Multilingual BERT classifiers fine-tuned on translated pseudo-labels (mFACT) reach a mean F1 of 95.2 (SD 1.8) and mean accuracy of 95.3 across Chinese, Spanish, French, Hindi, Vietnamese and Turkish on the translated test sets (500 pairs per language). This is Table 1 of the paper, with per-language results in its Table 10.
@@ -26,10 +23,10 @@ Group [NN] | [Member A], [Member B], [Member C] | Final commit tag: `submission`
 
 | Item | Value |
 |---|---|
-| Python | [TODO: e.g. 3.10.x] |
-| Dependencies | `requirements.txt` (pinned versions) [TODO: create from `pip freeze` in the Colab/venv that produced the results] |
-| Hardware used for reported results | Google Colab, [TODO: GPU model, e.g. T4, and RAM] |
-| Runs without a GPU? | [TODO: yes, slower / no]. Use the reduced run (Section 4) |
+| Python | 3.13 |
+| Dependencies | `requirements.txt` (pinned versions) |
+| Hardware used for reported results | Google Colab, T4 |
+| Runs without a GPU? | Use the reduced run (Section 4) |
 | Seeds | Inference is deterministic. `set_seed(0)` in `src/common.py` fixes Python, NumPy and PyTorch seeds anyway |
 
 Setup (Linux/macOS, or Git Bash / WSL on Windows, since the scripts are bash):
@@ -49,9 +46,8 @@ python -m pip install -r requirements.txt
 |---|---|
 | Dataset | Authors' translated faithfulness dataset (`{lang}-translated-{train,valid,test}.csv`) |
 | Download | https://drive.google.com/drive/folders/1WbTqPWLGTGkJFgVxVehPMjM0rYGUwwG7 |
-| Licence | [TODO: check the Drive folder and the original repo licence and state it here] |
-| Models | `yfqiu-nlp/mFACT-{zh_CN,es_XX,fr_XX,hi_IN,vi_VN,tr_TR}` on Hugging Face (MIT licence as shown on the model pages [TODO: verify]) |
-| Size | Test files: 500 pairs per language. Models: about 700 MB each [TODO: verify] |
+| Models | `yfqiu-nlp/mFACT-{zh_CN,es_XX,fr_XX,hi_IN,vi_VN,tr_TR}` on Hugging Face (MIT licence as shown on the official github repo) |
+| Size | Test files: 500 pairs per language.|
 
 **Download and preprocessing (one command):**
 
