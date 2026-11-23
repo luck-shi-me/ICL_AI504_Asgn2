@@ -1,8 +1,3 @@
-# AI504 Assignment 2: Reproducing mFACT (Qiu et al., EMNLP 2023)
-
-Group [09] | Group [09] [Ismail Zaid Alkilani],[Alfarouq Alsharif],[Lakshmi Vijay]
----
-
 ## 1. Paper reproduced and claim tested
 
 **Paper.** Yifu Qiu, Yftah Ziser, Anna Korhonen, Edoardo M. Ponti, and Shay B. Cohen (2023). *Detecting and Mitigating Hallucinations in Multilingual Summarisation.* Proceedings of EMNLP 2023, pages 8914-8932.
@@ -14,8 +9,6 @@ Group [09] | Group [09] [Ismail Zaid Alkilani],[Alfarouq Alsharif],[Lakshmi Vija
 **Scope.** We evaluate the authors' released checkpoints on the released test sets. We do **not** retrain the classifiers and do **not** reproduce the summarisation experiments (the paper's Table 4) or the human evaluation.
 
 **Our headline result.** Mean F1 95.65 (SD 1.18) against 95.2 in the paper. Five of six languages match the paper to two decimals; Chinese differs (our F1 95.10 against 92.53). Verdict: claim supported for the released artefacts. See the report for details.
-
-**Extra analyses (ours).** (a) Confusion matrices implied by the paper's metrics; (b) a document-dependence probe (shuffled and empty documents); (c) a decision-threshold sweep.
 
 ---
 
@@ -93,7 +86,7 @@ Reproduction tolerance: within 1 percentage point of the values below (rubric gu
 |---|---|---|
 | `reproduce_tables_1_2.sh` | F1 (ours): zh 95.10, es 96.96, fr 95.58, hi 93.88, vi 95.41, tr 96.97. Accuracy: 95.2, 97.0, 95.6, 94.0, 95.4, 97.0. Mean (SD): acc 95.70 (1.15), precision 95.95 (1.24), recall 95.36 (1.63), F1 95.65 (1.18). Paper: F1 mean 95.2 (1.8); five languages identical to the paper, zh differs | 
 | `reproduce_table3_confusion.sh` | Each language has 248 faithful and 252 hallucinated pairs. Errors (ours): zh 24, es 15, fr 22, hi 30, vi 23, tr 15. Paper's zh row implies 37 errors | 
-| `reproduce_table4_probe.sh` | Accuracy, original / shuffled document / empty document: zh 95.2/54.2/53.0, es 97.0/52.2/50.4, fr 95.6/52.6/50.4, hi 94.0/57.8/50.4, vi 95.4/54.6/50.4, tr 97.0/53.4/50.4. Mean 95.70 / 54.13 / 50.83 |\
+| `reproduce_table4_probe.sh` | Accuracy, original / shuffled document / empty document: zh 95.2/54.2/53.0, es 97.0/52.2/50.4, fr 95.6/52.6/50.4, hi 94.0/57.8/50.4, vi 95.4/54.6/50.4, tr 97.0/53.4/50.4. Mean 95.70 / 54.13 / 50.83 |
 | `reproduce_table5_sweep.sh` | Mean F1 over languages: 95.65 at threshold 0.5, 95.90 at 0.7. F1 varies by at most 0.96 points between thresholds 0.3 and 0.7 | 
 
 The first run downloads each model from Hugging Face. Later runs use the local cache.
@@ -117,20 +110,6 @@ The first run downloads each model from Hugging Face. Later runs use the local c
 ---
 
 ## 7. Tests
-
-```bash
-bash scripts/run_tests.sh --fast   # unit tests only; no data or models needed
-bash scripts/run_tests.sh          # all tests; needs the dataset and downloads models
-```
-
-| Test file | What it checks | Needs data? |
-|---|---|---|
-| `tests/test_metrics_and_labels.py` (4 tests) | Metrics on toy examples; `entailment` -> 1 and `contradiction` -> 0; unknown labels raise an error | No |
-| `tests/test_implied_confusion.py` (2 tests) | Confusion solver reproduces the hand-checked Spanish and Chinese rows (Chinese paper row implies 37 errors) | No |
-| `tests/test_model_checks.py` (2 tests, marker `model`) | (a) Sanity: shuffled documents lower the share predicted faithful; (b) Spanish F1 within 1 point of the paper's 96.96 | Yes |
-
-
----
 
 ## Findings and advice for future reproducers
 
@@ -156,3 +135,4 @@ results/                   outputs and logs (one file per reported table)
 ## Acknowledgements
 
 All models, data and the method are by Qiu et al. (2023); see the citation above.
+
