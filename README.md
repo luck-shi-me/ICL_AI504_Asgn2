@@ -89,7 +89,7 @@ bash scripts/reproduce_tables_1_2.sh --quick    # Spanish and Hindi only, 100 ra
 Reproduction tolerance: within 1 percentage point of the values below (rubric guideline for "reproduced").
 
 | Command | Expected result |
-|---|---|---|
+|---|---|
 | `reproduce_tables_1_2.sh` | F1 (ours): zh 95.10, es 96.96, fr 95.58, hi 93.88, vi 95.41, tr 96.97. Accuracy: 95.2, 97.0, 95.6, 94.0, 95.4, 97.0. Mean (SD): acc 95.70 (1.15), precision 95.95 (1.24), recall 95.36 (1.63), F1 95.65 (1.18). Paper: F1 mean 95.2 (1.8); five languages identical to the paper, zh differs |
 | `reproduce_table3_confusion.sh` | Each language has 248 faithful and 252 hallucinated pairs. Errors (ours): zh 24, es 15, fr 22, hi 30, vi 23, tr 15. Paper's zh row implies 37 errors | 
 | `reproduce_table4_probe.sh` | Accuracy, original / shuffled document / empty document: zh 95.2/54.2/53.0, es 97.0/52.2/50.4, fr 95.6/52.6/50.4, hi 94.0/57.8/50.4, vi 95.4/54.6/50.4, tr 97.0/53.4/50.4. Mean 95.70 / 54.13 / 50.83 |
