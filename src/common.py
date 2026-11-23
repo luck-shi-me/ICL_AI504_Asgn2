@@ -44,7 +44,7 @@ def set_seed(seed=0):
         pass
 
 
-def test_file(lang, data_dir=DATA_DIR):
+def find_test_file(lang, data_dir=DATA_DIR):
     """Return the path of the test CSV for a language code such as 'es_XX'."""
     prefix = LANGS.get(lang, lang.split("_")[0])
     hits = glob.glob(f"{data_dir}/**/{prefix}-translated*test*.csv", recursive=True)
@@ -64,7 +64,7 @@ def labels_to_binary(labels):
 
 def load_test(lang, data_dir=DATA_DIR, n=None, seed=0):
     """Load a language's test CSV; if n is given, return a reproducible random sample of n rows."""
-    d = pd.read_csv(test_file(lang, data_dir))
+    d = pd.read_csv(find_test_file(lang, data_dir))
     missing = {DOC_COL, SUM_COL, LABEL_COL} - set(d.columns)
     if missing:
         raise ValueError(f"{lang}: missing columns {sorted(missing)}; found {d.columns.tolist()}")
