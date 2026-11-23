@@ -3,7 +3,7 @@ import sys
 
 import pandas as pd
 
-from common import LANGS, DATA_DIR, EXPECTED_TEST_ROWS, DOC_COL, SUM_COL, LABEL_COL, labels_to_binary, test_file
+from common import LANGS, DATA_DIR, EXPECTED_TEST_ROWS, DOC_COL, SUM_COL, LABEL_COL, labels_to_binary, find_test_file
 
 
 def main(data_dir=DATA_DIR):
@@ -11,7 +11,7 @@ def main(data_dir=DATA_DIR):
     ok = True
     for lang in LANGS:
         try:
-            d = pd.read_csv(test_file(lang, data_dir))
+            d = pd.read_csv(find_test_file(lang, data_dir))
             labels_to_binary(d[LABEL_COL])
             cols_ok = {DOC_COL, SUM_COL, LABEL_COL} <= set(d.columns)
             rows_ok = len(d) == EXPECTED_TEST_ROWS
