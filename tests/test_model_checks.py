@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 
 from common import (DOC_COL, SUM_COL, LABEL_COL, THRESHOLD, PAPER_TABLE10, labels_to_binary,
-                    load_test, load_model, score_pairs, metrics, test_file)
+                    load_test, load_model, score_pairs, metrics, find_test_file)
 
 pytestmark = pytest.mark.model
 
@@ -12,7 +12,7 @@ pytestmark = pytest.mark.model
 def _need_data(lang):
     """Skip (not fail) when the dataset has not been downloaded yet."""
     try:
-        test_file(lang)
+        find_test_file(lang)
     except FileNotFoundError:
         pytest.skip("dataset missing: run scripts/download_data.sh")
 
